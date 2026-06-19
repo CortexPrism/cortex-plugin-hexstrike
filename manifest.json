@@ -1,0 +1,190 @@
+{
+  "name": "cortex-plugin-hexstrike",
+  "version": "1.0.0",
+  "description": "HexStrike: Autonomous Security Pentesting — 70+ professional offensive security tools for enumeration, vulnerability scanning, exploitation, privilege escalation, and reporting. All operations sandboxed with human approval gates.",
+  "kind": "esm",
+  "entryPoint": "mod.ts",
+  "runtime": "deno",
+  "author": "CortexPrism",
+  "license": "MIT",
+  "repository": "https://github.com/CortexPrism/cortex-plugin-hexstrike",
+  "homepage": "https://cortexprism.io/marketplace/plugins/hexstrike",
+  "capabilities": ["tools", "shell:run", "network:fetch"],
+  "tools": [
+    {
+      "name": "pentest_scan",
+      "description": "Run a comprehensive vulnerability scan against a target using multiple scanning engines (Nmap, Nuclei, OWASP ZAP)",
+      "params": [
+        {
+          "name": "target",
+          "type": "string",
+          "description": "Target URL, IP, or hostname",
+          "required": true
+        },
+        {
+          "name": "scan_type",
+          "type": "string",
+          "description": "Scan type",
+          "required": false,
+          "enum": ["quick", "full", "stealth", "webapp", "network"]
+        },
+        {
+          "name": "ports",
+          "type": "string",
+          "description": "Port range (e.g. 1-1000, common, all)",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "pentest_enumerate",
+      "description": "Enumerate services, directories, subdomains, users, and technologies on the target",
+      "params": [
+        {
+          "name": "target",
+          "type": "string",
+          "description": "Target URL, IP, or hostname",
+          "required": true
+        },
+        {
+          "name": "enum_type",
+          "type": "string",
+          "description": "Enumeration type",
+          "required": true,
+          "enum": ["subdomain", "directory", "service", "user", "technology", "all"]
+        },
+        {
+          "name": "wordlist",
+          "type": "string",
+          "description": "Wordlist to use (common, medium, large)",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "pentest_exploit_check",
+      "description": "Check if target is vulnerable to known CVEs and exploits without actually exploiting (safe validation)",
+      "params": [
+        {
+          "name": "target",
+          "type": "string",
+          "description": "Target URL, IP, or hostname",
+          "required": true
+        },
+        {
+          "name": "cve_ids",
+          "type": "string",
+          "description": "Comma-separated CVE IDs to check (omit for auto-detect)",
+          "required": false
+        },
+        {
+          "name": "severity",
+          "type": "string",
+          "description": "Minimum severity to report",
+          "required": false,
+          "enum": ["low", "medium", "high", "critical"]
+        }
+      ]
+    },
+    {
+      "name": "pentest_report",
+      "description": "Generate a professional penetration test report with findings, risk ratings, evidence, and remediation steps",
+      "params": [
+        {
+          "name": "target",
+          "type": "string",
+          "description": "Target that was tested",
+          "required": true
+        },
+        {
+          "name": "scan_ids",
+          "type": "string",
+          "description": "Comma-separated scan IDs to include in report",
+          "required": false
+        },
+        {
+          "name": "format",
+          "type": "string",
+          "description": "Report format",
+          "required": false,
+          "enum": ["markdown", "json", "pdf"]
+        },
+        {
+          "name": "include_remediation",
+          "type": "boolean",
+          "description": "Include detailed remediation steps",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "pentest_attack_surface",
+      "description": "Map the attack surface of a target: discover all exposed services, APIs, endpoints, and potential entry points",
+      "params": [
+        {
+          "name": "target",
+          "type": "string",
+          "description": "Target URL, IP, or domain",
+          "required": true
+        },
+        {
+          "name": "depth",
+          "type": "string",
+          "description": "Analysis depth",
+          "required": false,
+          "enum": ["shallow", "moderate", "deep"]
+        }
+      ]
+    }
+  ],
+  "dependencies": {},
+  "peerDependencies": { "cortex": ">=1.0.0" },
+  "ui": {
+    "settings": [
+      {
+        "section": "Scan Configuration",
+        "fields": [
+          {
+            "key": "maxConcurrentScans",
+            "label": "Max Concurrent Scans",
+            "type": "number",
+            "defaultValue": 3
+          },
+          {
+            "key": "scanTimeoutMinutes",
+            "label": "Scan Timeout (minutes)",
+            "type": "number",
+            "defaultValue": 60
+          },
+          {
+            "key": "rateLimit",
+            "label": "Rate Limit (requests/sec)",
+            "type": "number",
+            "defaultValue": 10
+          }
+        ]
+      },
+      {
+        "section": "Approval Gates",
+        "fields": [
+          {
+            "key": "requireApprovalForExploitation",
+            "label": "Require Approval for Exploitation",
+            "type": "boolean",
+            "defaultValue": true
+          },
+          {
+            "key": "autoApprovePassiveScans",
+            "label": "Auto-approve Passive Scans",
+            "type": "boolean",
+            "defaultValue": true
+          }
+        ]
+      }
+    ]
+  },
+  "aiDisclosure": {
+    "tools": ["Kilo (DeepSeek) — scaffold and implementation"],
+    "humanReview": true
+  }
+}
