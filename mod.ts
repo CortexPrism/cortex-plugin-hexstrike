@@ -1,4 +1,4 @@
-// deno-lint-ignore-file require-await, no-unused-vars
+// deno-lint-ignore-file require-await
 /**
  * CortexPrism HexStrike Autonomous Pentesting
  * Plugin #270 from plugin-ideas.md
