@@ -36,9 +36,11 @@ cortex chat --plugin example-plugin
 Greet a person by name.
 
 **Parameters:**
+
 - `name` (string, required) — Person's name
 
 **Example:**
+
 ```bash
 cortex tool call hello --name Alice
 # Output: Hello, Alice! Welcome to Cortex.
@@ -49,10 +51,12 @@ cortex tool call hello --name Alice
 Add two numbers together.
 
 **Parameters:**
+
 - `a` (number, required) — First number
 - `b` (number, required) — Second number
 
 **Example:**
+
 ```bash
 cortex tool call add --a 5 --b 3
 # Output: 8
@@ -63,9 +67,11 @@ cortex tool call add --a 5 --b 3
 Fetch data from an external API (HTTPS only).
 
 **Parameters:**
+
 - `url` (string, required) — URL to fetch from
 
 **Example:**
+
 ```bash
 cortex tool call fetch_data --url https://api.example.com/data
 ```
@@ -88,6 +94,7 @@ Configure this plugin in `~/.cortex/config.json`:
 ## Permissions
 
 This plugin declares:
+
 - `network:fetch` — Makes HTTPS requests to external APIs
 
 ## Development
@@ -156,6 +163,7 @@ For detailed publishing instructions, see [Publishing Plugins](../docs/publishin
 **Error:** `Plugin failed to load: Invalid manifest`
 
 **Solution:** Validate your `manifest.json`:
+
 ```bash
 deno task validate
 ```
@@ -165,6 +173,7 @@ deno task validate
 **Error:** `Tool not found`
 
 **Solution:** Ensure the tool is:
+
 1. Exported in the `tools` array in `mod.ts`
 2. Declared in `manifest.json` under `tools`
 3. Plugin is enabled: `cortex plugin enable example-plugin`
@@ -180,6 +189,7 @@ deno task validate
 See [Best Practices](../docs/best-practices.md) for complete guidelines:
 
 ✅ **Do:**
+
 - Validate all tool parameters
 - Handle errors gracefully
 - Return ToolResult with `success` and `output`/`error`
@@ -188,6 +198,7 @@ See [Best Practices](../docs/best-practices.md) for complete guidelines:
 - Write comprehensive tests
 
 ❌ **Don't:**
+
 - Hardcode API keys or secrets
 - Request overly broad permissions
 - Ignore errors
