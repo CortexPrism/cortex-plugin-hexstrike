@@ -3,9 +3,9 @@
  * CortexPrism HexStrike Autonomous Pentesting
  * Plugin #270 from plugin-ideas.md
  */
-import type { PluginContext, Tool, ToolResult } from 'cortex/plugins';
+import type { PluginContext, Tool, ToolCallResult } from 'cortex/plugins';
 
-function ok(name: string, output: unknown, start: number): ToolResult {
+function ok(name: string, output: unknown, start: number): ToolCallResult {
   return {
     toolName: name,
     success: true,
@@ -13,7 +13,7 @@ function ok(name: string, output: unknown, start: number): ToolResult {
     durationMs: Date.now() - start,
   };
 }
-function err(name: string, msg: string, start: number): ToolResult {
+function err(name: string, msg: string, start: number): ToolCallResult {
   return { toolName: name, success: false, output: '', error: msg, durationMs: Date.now() - start };
 }
 

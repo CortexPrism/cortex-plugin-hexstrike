@@ -1,7 +1,7 @@
 {
   "name": "cortex-plugin-hexstrike",
-  "version": "1.0.0",
-  "description": "HexStrike: Autonomous Security Pentesting — 70+ professional offensive security tools for enumeration, vulnerability scanning, exploitation, privilege escalation, and reporting. All operations sandboxed with human approval gates.",
+  "version": "1.0.1",
+  "description": "HexStrike: Autonomous Security Pentesting \u2014 70+ professional offensive security tools for enumeration, vulnerability scanning, exploitation, privilege escalation, and reporting. All operations sandboxed with human approval gates.",
   "kind": "esm",
   "entryPoint": "mod.ts",
   "runtime": "deno",
@@ -9,7 +9,11 @@
   "license": "MIT",
   "repository": "https://github.com/CortexPrism/cortex-plugin-hexstrike",
   "homepage": "https://cortexprism.io/marketplace/plugins/hexstrike",
-  "capabilities": ["tools", "shell:run", "network:fetch"],
+  "capabilities": [
+    "tools",
+    "shell:run",
+    "network:fetch"
+  ],
   "tools": [
     {
       "name": "pentest_scan",
@@ -26,7 +30,13 @@
           "type": "string",
           "description": "Scan type",
           "required": false,
-          "enum": ["quick", "full", "stealth", "webapp", "network"]
+          "enum": [
+            "quick",
+            "full",
+            "stealth",
+            "webapp",
+            "network"
+          ]
         },
         {
           "name": "ports",
@@ -51,7 +61,14 @@
           "type": "string",
           "description": "Enumeration type",
           "required": true,
-          "enum": ["subdomain", "directory", "service", "user", "technology", "all"]
+          "enum": [
+            "subdomain",
+            "directory",
+            "service",
+            "user",
+            "technology",
+            "all"
+          ]
         },
         {
           "name": "wordlist",
@@ -82,7 +99,12 @@
           "type": "string",
           "description": "Minimum severity to report",
           "required": false,
-          "enum": ["low", "medium", "high", "critical"]
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "critical"
+          ]
         }
       ]
     },
@@ -107,7 +129,11 @@
           "type": "string",
           "description": "Report format",
           "required": false,
-          "enum": ["markdown", "json", "pdf"]
+          "enum": [
+            "markdown",
+            "json",
+            "pdf"
+          ]
         },
         {
           "name": "include_remediation",
@@ -132,13 +158,19 @@
           "type": "string",
           "description": "Analysis depth",
           "required": false,
-          "enum": ["shallow", "moderate", "deep"]
+          "enum": [
+            "shallow",
+            "moderate",
+            "deep"
+          ]
         }
       ]
     }
   ],
   "dependencies": {},
-  "peerDependencies": { "cortex": ">=1.0.0" },
+  "peerDependencies": {
+    "cortex": ">=0.51.0"
+  },
   "ui": {
     "settings": [
       {
@@ -184,7 +216,9 @@
     ]
   },
   "aiDisclosure": {
-    "tools": ["Kilo (DeepSeek) — scaffold and implementation"],
+    "tools": [
+      "Kilo (DeepSeek) \u2014 scaffold and implementation"
+    ],
     "humanReview": true
   }
 }
